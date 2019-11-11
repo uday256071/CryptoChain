@@ -1,0 +1,13 @@
+f0fae05e6301a84a69cf5ff9bc237f59
+const cryptoHash = require('./crypto-hash');
+
+describe('cryptoHash()', () => {
+
+    it('generates a SHA-256 hashed output', () => {
+        expect(cryptoHash('uday')).toEqual('7b5515975e1b8d8d5def96cd0d00c065c94761541fcc0db64cc99df716fac127');
+    });
+    it('produces the same hash with the same input arguments in any order', () => {
+        expect(cryptoHash('one', 'two', 'three')).toEqual(cryptoHash('three', 'one', 'two'));
+    });
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNyeXB0by1oYXNoLnRlc3QuanMiXSwibmFtZXMiOlsiY3J5cHRvSGFzaCIsInJlcXVpcmUiLCJkZXNjcmliZSIsIml0IiwiZXhwZWN0IiwidG9FcXVhbCJdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTUEsYUFBYUMsUUFBUSxlQUFSLENBQW5COztBQUVBQyxTQUFTLGNBQVQsRUFBd0IsTUFBSTs7QUFFeEJDLE9BQUcsbUNBQUgsRUFBdUMsTUFBSTtBQUN2Q0MsZUFBT0osV0FBVyxNQUFYLENBQVAsRUFBMkJLLE9BQTNCLENBQW1DLGtFQUFuQztBQUNILEtBRkQ7QUFHQUYsT0FBRyxtRUFBSCxFQUF1RSxNQUFJO0FBQ3ZFQyxlQUFPSixXQUFXLEtBQVgsRUFBaUIsS0FBakIsRUFBdUIsT0FBdkIsQ0FBUCxFQUF3Q0ssT0FBeEMsQ0FBZ0RMLFdBQVcsT0FBWCxFQUFtQixLQUFuQixFQUF5QixLQUF6QixDQUFoRDtBQUNILEtBRkQ7QUFHSCxDQVJEIiwiZmlsZSI6ImNyeXB0by1oYXNoLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBjcnlwdG9IYXNoID0gcmVxdWlyZSgnLi9jcnlwdG8taGFzaCcpO1xuXG5kZXNjcmliZSgnY3J5cHRvSGFzaCgpJywoKT0+eyAgXG5cbiAgICBpdCgnZ2VuZXJhdGVzIGEgU0hBLTI1NiBoYXNoZWQgb3V0cHV0JywoKT0+e1xuICAgICAgICBleHBlY3QoY3J5cHRvSGFzaCgndWRheScpKS50b0VxdWFsKCc3YjU1MTU5NzVlMWI4ZDhkNWRlZjk2Y2QwZDAwYzA2NWM5NDc2MTU0MWZjYzBkYjY0Y2M5OWRmNzE2ZmFjMTI3JylcbiAgICB9KTtcbiAgICBpdCgncHJvZHVjZXMgdGhlIHNhbWUgaGFzaCB3aXRoIHRoZSBzYW1lIGlucHV0IGFyZ3VtZW50cyBpbiBhbnkgb3JkZXInLCgpPT57XG4gICAgICAgIGV4cGVjdChjcnlwdG9IYXNoKCdvbmUnLCd0d28nLCd0aHJlZScpKS50b0VxdWFsKGNyeXB0b0hhc2goJ3RocmVlJywnb25lJywndHdvJykpO1xuICAgIH0pO1xufSk7Il19

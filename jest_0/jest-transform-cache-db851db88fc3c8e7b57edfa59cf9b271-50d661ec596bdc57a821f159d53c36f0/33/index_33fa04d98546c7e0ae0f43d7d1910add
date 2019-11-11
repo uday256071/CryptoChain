@@ -1,0 +1,51 @@
+dec6bc9e4088187118fc734352904032
+const Block = require('./block');
+const cryptoHash = require('../util/crypto-hash');
+
+class Blockchain {
+    constructor() {
+        this.chain = [Block.genesis()];
+    }
+    addBlock({ data }) {
+        const newBlock = Block.mineBlock({
+            lastBlock: this.chain[this.chain.length - 1],
+            data
+        });
+        this.chain.push(newBlock);
+    }
+    replaceChain(chain) {
+        if (chain.length <= this.chain.length) {
+            console.error('The incomming chain must be longer');
+            return;
+        }
+        if (!Blockchain.isValidChain(chain)) {
+            console.error('The incomming Chain must be valid');
+            return;
+        }
+        console.log('replacing chain with', chain);
+        this.chain = chain;
+    }
+    static isValidChain(chain) {
+        if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) {
+            return false;
+        }
+        for (let i = 1; i < chain.length; i++) {
+            const { timestamp, lastHash, hash, nonce, difficulty, data } = chain[i];
+            const actualLastHash = chain[i - 1].hash;
+
+            const lastDifficulty = chain[i - 1].difficulty;
+
+            if (lastHash !== actualLastHash) return false;
+
+            const validatedHash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
+            if (hash !== validatedHash) return false;
+
+            if (Math.abs(lastDifficulty - difficulty) > 1) return false;
+        }
+
+        return true;
+    }
+}
+
+module.exports = Blockchain;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbIkJsb2NrIiwicmVxdWlyZSIsImNyeXB0b0hhc2giLCJCbG9ja2NoYWluIiwiY29uc3RydWN0b3IiLCJjaGFpbiIsImdlbmVzaXMiLCJhZGRCbG9jayIsImRhdGEiLCJuZXdCbG9jayIsIm1pbmVCbG9jayIsImxhc3RCbG9jayIsImxlbmd0aCIsInB1c2giLCJyZXBsYWNlQ2hhaW4iLCJjb25zb2xlIiwiZXJyb3IiLCJpc1ZhbGlkQ2hhaW4iLCJsb2ciLCJKU09OIiwic3RyaW5naWZ5IiwiaSIsInRpbWVzdGFtcCIsImxhc3RIYXNoIiwiaGFzaCIsIm5vbmNlIiwiZGlmZmljdWx0eSIsImFjdHVhbExhc3RIYXNoIiwibGFzdERpZmZpY3VsdHkiLCJ2YWxpZGF0ZWRIYXNoIiwiTWF0aCIsImFicyIsIm1vZHVsZSIsImV4cG9ydHMiXSwibWFwcGluZ3MiOiJBQUFBLE1BQU1BLFFBQVFDLFFBQVEsU0FBUixDQUFkO0FBQ0EsTUFBTUMsYUFBV0QsUUFBUSxxQkFBUixDQUFqQjs7QUFFQSxNQUFNRSxVQUFOLENBQWdCO0FBQ1pDLGtCQUFhO0FBQ1QsYUFBS0MsS0FBTCxHQUFXLENBQUNMLE1BQU1NLE9BQU4sRUFBRCxDQUFYO0FBQ0g7QUFDREMsYUFBUyxFQUFDQyxJQUFELEVBQVQsRUFBZ0I7QUFDWixjQUFNQyxXQUFXVCxNQUFNVSxTQUFOLENBQWdCO0FBQzdCQyx1QkFBVyxLQUFLTixLQUFMLENBQVcsS0FBS0EsS0FBTCxDQUFXTyxNQUFYLEdBQWtCLENBQTdCLENBRGtCO0FBRTdCSjtBQUY2QixTQUFoQixDQUFqQjtBQUlBLGFBQUtILEtBQUwsQ0FBV1EsSUFBWCxDQUFnQkosUUFBaEI7QUFDSDtBQUNESyxpQkFBYVQsS0FBYixFQUFtQjtBQUNmLFlBQUdBLE1BQU1PLE1BQU4sSUFBZ0IsS0FBS1AsS0FBTCxDQUFXTyxNQUE5QixFQUFxQztBQUNqQ0csb0JBQVFDLEtBQVIsQ0FBYyxvQ0FBZDtBQUNBO0FBQ0g7QUFDRCxZQUFHLENBQUNiLFdBQVdjLFlBQVgsQ0FBd0JaLEtBQXhCLENBQUosRUFBbUM7QUFDL0JVLG9CQUFRQyxLQUFSLENBQWMsbUNBQWQ7QUFDQTtBQUNIO0FBQ0RELGdCQUFRRyxHQUFSLENBQVksc0JBQVosRUFBbUNiLEtBQW5DO0FBQ0EsYUFBS0EsS0FBTCxHQUFXQSxLQUFYO0FBQ0g7QUFDRCxXQUFPWSxZQUFQLENBQW9CWixLQUFwQixFQUEwQjtBQUN0QixZQUFHYyxLQUFLQyxTQUFMLENBQWVmLE1BQU0sQ0FBTixDQUFmLE1BQTRCYyxLQUFLQyxTQUFMLENBQWVwQixNQUFNTSxPQUFOLEVBQWYsQ0FBL0IsRUFBK0Q7QUFDM0QsbUJBQU8sS0FBUDtBQUNIO0FBQ0QsYUFBSyxJQUFJZSxJQUFFLENBQVgsRUFBYUEsSUFBRWhCLE1BQU1PLE1BQXJCLEVBQTRCUyxHQUE1QixFQUFnQztBQUM1QixrQkFBTSxFQUFDQyxTQUFELEVBQVdDLFFBQVgsRUFBb0JDLElBQXBCLEVBQXlCQyxLQUF6QixFQUErQkMsVUFBL0IsRUFBMENsQixJQUExQyxLQUFpREgsTUFBTWdCLENBQU4sQ0FBdkQ7QUFDQSxrQkFBTU0saUJBQWlCdEIsTUFBTWdCLElBQUUsQ0FBUixFQUFXRyxJQUFsQzs7QUFFQSxrQkFBTUksaUJBQWV2QixNQUFNZ0IsSUFBRSxDQUFSLEVBQVdLLFVBQWhDOztBQUVBLGdCQUFHSCxhQUFXSSxjQUFkLEVBQThCLE9BQU8sS0FBUDs7QUFFOUIsa0JBQU1FLGdCQUFjM0IsV0FBV29CLFNBQVgsRUFBcUJDLFFBQXJCLEVBQThCZixJQUE5QixFQUFtQ2lCLEtBQW5DLEVBQXlDQyxVQUF6QyxDQUFwQjtBQUNBLGdCQUFHRixTQUFTSyxhQUFaLEVBQTJCLE9BQU8sS0FBUDs7QUFFM0IsZ0JBQUdDLEtBQUtDLEdBQUwsQ0FBU0gsaUJBQWVGLFVBQXhCLElBQW9DLENBQXZDLEVBQTBDLE9BQU8sS0FBUDtBQUM3Qzs7QUFFRCxlQUFPLElBQVA7QUFDSDtBQTFDVzs7QUE2Q2hCTSxPQUFPQyxPQUFQLEdBQWU5QixVQUFmIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgQmxvY2sgPSByZXF1aXJlKCcuL2Jsb2NrJyk7XG5jb25zdCBjcnlwdG9IYXNoPXJlcXVpcmUoJy4uL3V0aWwvY3J5cHRvLWhhc2gnKVxuXG5jbGFzcyBCbG9ja2NoYWlue1xuICAgIGNvbnN0cnVjdG9yKCl7XG4gICAgICAgIHRoaXMuY2hhaW49W0Jsb2NrLmdlbmVzaXMoKV07XG4gICAgfVxuICAgIGFkZEJsb2NrKHtkYXRhfSl7XG4gICAgICAgIGNvbnN0IG5ld0Jsb2NrID0gQmxvY2subWluZUJsb2NrKHtcbiAgICAgICAgICAgIGxhc3RCbG9jazogdGhpcy5jaGFpblt0aGlzLmNoYWluLmxlbmd0aC0xXSxcbiAgICAgICAgICAgIGRhdGFcbiAgICAgICAgfSk7XG4gICAgICAgIHRoaXMuY2hhaW4ucHVzaChuZXdCbG9jayk7XG4gICAgfVxuICAgIHJlcGxhY2VDaGFpbihjaGFpbil7XG4gICAgICAgIGlmKGNoYWluLmxlbmd0aCA8PSB0aGlzLmNoYWluLmxlbmd0aCl7XG4gICAgICAgICAgICBjb25zb2xlLmVycm9yKCdUaGUgaW5jb21taW5nIGNoYWluIG11c3QgYmUgbG9uZ2VyJyk7XG4gICAgICAgICAgICByZXR1cm47XG4gICAgICAgIH1cbiAgICAgICAgaWYoIUJsb2NrY2hhaW4uaXNWYWxpZENoYWluKGNoYWluKSl7XG4gICAgICAgICAgICBjb25zb2xlLmVycm9yKCdUaGUgaW5jb21taW5nIENoYWluIG11c3QgYmUgdmFsaWQnKTtcbiAgICAgICAgICAgIHJldHVybjtcbiAgICAgICAgfVxuICAgICAgICBjb25zb2xlLmxvZygncmVwbGFjaW5nIGNoYWluIHdpdGgnLGNoYWluKTtcbiAgICAgICAgdGhpcy5jaGFpbj1jaGFpbjtcbiAgICB9XG4gICAgc3RhdGljIGlzVmFsaWRDaGFpbihjaGFpbil7XG4gICAgICAgIGlmKEpTT04uc3RyaW5naWZ5KGNoYWluWzBdKSE9PSBKU09OLnN0cmluZ2lmeShCbG9jay5nZW5lc2lzKCkpKXtcbiAgICAgICAgICAgIHJldHVybiBmYWxzZTtcbiAgICAgICAgfVxuICAgICAgICBmb3IgKGxldCBpPTE7aTxjaGFpbi5sZW5ndGg7aSsrKXtcbiAgICAgICAgICAgIGNvbnN0IHt0aW1lc3RhbXAsbGFzdEhhc2gsaGFzaCxub25jZSxkaWZmaWN1bHR5LGRhdGF9ID1jaGFpbltpXTtcbiAgICAgICAgICAgIGNvbnN0IGFjdHVhbExhc3RIYXNoID0gY2hhaW5baS0xXS5oYXNoO1xuXG4gICAgICAgICAgICBjb25zdCBsYXN0RGlmZmljdWx0eT1jaGFpbltpLTFdLmRpZmZpY3VsdHk7XG5cbiAgICAgICAgICAgIGlmKGxhc3RIYXNoIT09YWN0dWFsTGFzdEhhc2gpIHJldHVybiBmYWxzZTtcblxuICAgICAgICAgICAgY29uc3QgdmFsaWRhdGVkSGFzaD1jcnlwdG9IYXNoKHRpbWVzdGFtcCxsYXN0SGFzaCxkYXRhLG5vbmNlLGRpZmZpY3VsdHkpO1xuICAgICAgICAgICAgaWYoaGFzaCAhPT0gdmFsaWRhdGVkSGFzaCkgcmV0dXJuIGZhbHNlO1xuICAgICAgICAgICAgXG4gICAgICAgICAgICBpZihNYXRoLmFicyhsYXN0RGlmZmljdWx0eS1kaWZmaWN1bHR5KT4xKSByZXR1cm4gZmFsc2U7XG4gICAgICAgIH1cbiAgICAgICAgIFxuICAgICAgICByZXR1cm4gdHJ1ZTtcbiAgICB9XG59XG5cbm1vZHVsZS5leHBvcnRzPUJsb2NrY2hhaW47Il19

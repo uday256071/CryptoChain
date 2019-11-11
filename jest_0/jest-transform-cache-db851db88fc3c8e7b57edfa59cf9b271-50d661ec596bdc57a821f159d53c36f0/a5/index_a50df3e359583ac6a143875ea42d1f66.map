@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":["EC","require","ec","module","exports"],"mappings":"AAAA,MAAMA,KAAGC,QAAQ,UAAR,EAAoBC,EAA7B;;AAEA,MAAMA,KAAG,IAAIF,EAAJ,CAAO,WAAP,CAAT;;AAEAG,OAAOC,OAAP,GAAe,EAACF,EAAD,EAAf","file":"index.js","sourcesContent":["const EC=require('elliptic').ec;\n\nconst ec=new EC('secp256k1');\n\nmodule.exports={ec};"]}

@@ -1,0 +1,18 @@
+ae0d7f6ed17adfb39dcf685c36c4651a
+const Wallet = require('./index');
+
+describe('wallet', () => {
+    let wallet;
+
+    beforeEach(() => {
+        wallet = new Wallet();
+    });
+
+    it('has a balance', () => {
+        expect(wallet).toHaveProperty('balance');
+    });
+    it('has a public key', () => {
+        expect(wallet).toHaveProperty('publicKey');
+    });
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LnRlc3QuanMiXSwibmFtZXMiOlsiV2FsbGV0IiwicmVxdWlyZSIsImRlc2NyaWJlIiwid2FsbGV0IiwiYmVmb3JlRWFjaCIsIml0IiwiZXhwZWN0IiwidG9IYXZlUHJvcGVydHkiXSwibWFwcGluZ3MiOiJBQUFBLE1BQU1BLFNBQVFDLFFBQVEsU0FBUixDQUFkOztBQUVBQyxTQUFTLFFBQVQsRUFBa0IsTUFBSTtBQUNsQixRQUFJQyxNQUFKOztBQUVBQyxlQUFXLE1BQUk7QUFDWEQsaUJBQU8sSUFBSUgsTUFBSixFQUFQO0FBQ0gsS0FGRDs7QUFJQUssT0FBRyxlQUFILEVBQW1CLE1BQUk7QUFDbkJDLGVBQU9ILE1BQVAsRUFBZUksY0FBZixDQUE4QixTQUE5QjtBQUNILEtBRkQ7QUFHQUYsT0FBRyxrQkFBSCxFQUFzQixNQUFJO0FBQ3RCQyxlQUFPSCxNQUFQLEVBQWVJLGNBQWYsQ0FBOEIsV0FBOUI7QUFDSCxLQUZEO0FBR0gsQ0FiRCIsImZpbGUiOiJpbmRleC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgV2FsbGV0ID1yZXF1aXJlKCcuL2luZGV4Jyk7XG5cbmRlc2NyaWJlKCd3YWxsZXQnLCgpPT57XG4gICAgbGV0IHdhbGxldDtcblxuICAgIGJlZm9yZUVhY2goKCk9PntcbiAgICAgICAgd2FsbGV0PW5ldyBXYWxsZXQoKTtcbiAgICB9KTtcblxuICAgIGl0KCdoYXMgYSBiYWxhbmNlJywoKT0+e1xuICAgICAgICBleHBlY3Qod2FsbGV0KS50b0hhdmVQcm9wZXJ0eSgnYmFsYW5jZScpO1xuICAgIH0pO1xuICAgIGl0KCdoYXMgYSBwdWJsaWMga2V5JywoKT0+e1xuICAgICAgICBleHBlY3Qod2FsbGV0KS50b0hhdmVQcm9wZXJ0eSgncHVibGljS2V5Jyk7XG4gICAgfSk7XG59KSJdfQ==

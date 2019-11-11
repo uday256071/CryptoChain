@@ -1,0 +1,19 @@
+cffa351fb568e4cbcfb58db02cae02c5
+const Wallet = require('./index');
+
+describe('wallet', () => {
+    let wallet;
+
+    beforeEach(() => {
+        wallet = new Wallet();
+    });
+
+    it('has a balance', () => {
+        expect(wallet).toHaveProperty('balance');
+    });
+    it('has a public key', () => {
+        // console.log(wallet.publicKey);
+        expect(wallet).toHaveProperty('publicKey');
+    });
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LnRlc3QuanMiXSwibmFtZXMiOlsiV2FsbGV0IiwicmVxdWlyZSIsImRlc2NyaWJlIiwid2FsbGV0IiwiYmVmb3JlRWFjaCIsIml0IiwiZXhwZWN0IiwidG9IYXZlUHJvcGVydHkiXSwibWFwcGluZ3MiOiJBQUFBLE1BQU1BLFNBQVFDLFFBQVEsU0FBUixDQUFkOztBQUVBQyxTQUFTLFFBQVQsRUFBa0IsTUFBSTtBQUNsQixRQUFJQyxNQUFKOztBQUVBQyxlQUFXLE1BQUk7QUFDWEQsaUJBQU8sSUFBSUgsTUFBSixFQUFQO0FBQ0gsS0FGRDs7QUFJQUssT0FBRyxlQUFILEVBQW1CLE1BQUk7QUFDbkJDLGVBQU9ILE1BQVAsRUFBZUksY0FBZixDQUE4QixTQUE5QjtBQUNILEtBRkQ7QUFHQUYsT0FBRyxrQkFBSCxFQUFzQixNQUFJO0FBQ3RCO0FBQ0FDLGVBQU9ILE1BQVAsRUFBZUksY0FBZixDQUE4QixXQUE5QjtBQUNILEtBSEQ7QUFJSCxDQWREIiwiZmlsZSI6ImluZGV4LnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBXYWxsZXQgPXJlcXVpcmUoJy4vaW5kZXgnKTtcblxuZGVzY3JpYmUoJ3dhbGxldCcsKCk9PntcbiAgICBsZXQgd2FsbGV0O1xuXG4gICAgYmVmb3JlRWFjaCgoKT0+e1xuICAgICAgICB3YWxsZXQ9bmV3IFdhbGxldCgpO1xuICAgIH0pO1xuXG4gICAgaXQoJ2hhcyBhIGJhbGFuY2UnLCgpPT57XG4gICAgICAgIGV4cGVjdCh3YWxsZXQpLnRvSGF2ZVByb3BlcnR5KCdiYWxhbmNlJyk7XG4gICAgfSk7XG4gICAgaXQoJ2hhcyBhIHB1YmxpYyBrZXknLCgpPT57XG4gICAgICAgIC8vIGNvbnNvbGUubG9nKHdhbGxldC5wdWJsaWNLZXkpO1xuICAgICAgICBleHBlY3Qod2FsbGV0KS50b0hhdmVQcm9wZXJ0eSgncHVibGljS2V5Jyk7XG4gICAgfSk7XG59KSJdfQ==
