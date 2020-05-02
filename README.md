@@ -1,2 +1,2 @@
 # CryptoChain
-A full-stack BlockChain, Crypto-Currency and wallet implementation
+A full-stack BlockChain, Crypto-Currency and wallet implementation.
